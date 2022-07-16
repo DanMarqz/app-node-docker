@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  nodito:
+    build: .
+    ports: 
+      - "3000:3000"
+    links: 
+      - monguito
+  monguito:
+    image: mongo:4.4.6
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=dani
+      - MONGO_INITDB_ROOT_PASSWORD=passwd
+    volumes:
+      - mongo-data:/data/db
+      # mysql -> /var/lib/mysql
+      # postgres -> /var/lib/postgresql/data
+
+volumes:
+  mongo-data:
